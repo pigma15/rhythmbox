@@ -1,0 +1,10 @@
+body {
+    background-color: black;
+    display: grid;
+    grid-template-columns: 1fr 96% 1fr;
+}
+    .machine {
+        margin-top: 100px;
+        display: inline-block;
+        grid-column: 2/3;
+    }

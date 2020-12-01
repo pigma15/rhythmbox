@@ -1,0 +1,23 @@
+.track {
+    background-color: grey;
+    display: inline-block;
+    width: 100%;
+}
+    .track > .name {
+        background-color: green;
+        display: inline-block;
+        width: 15%;
+        float: left;
+    }
+    .track > .row {
+        background-color: yellow;
+        display: flex;
+        width: 60%;  
+        float: left;      
+    }
+    .track > .param {
+        background-color: palevioletred;
+        display: flex;
+        width: 25%;  
+        float: left; 
+    }
