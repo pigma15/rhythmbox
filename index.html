@@ -10,33 +10,36 @@
     <link rel="stylesheet" href="./css/layout.css">
     <!-- 3rd party css -->
     <!-- component -->
+    <link rel="stylesheet" href="./css/button.css">
     <link rel="stylesheet" href="./css/track.css">
     <!-- custom -->
     <link rel="stylesheet" href="./css/custom.css">
 </head>
 <body>
     <div class="machine">
-        <div class="track">
+        <div id="prima" class="track">
             <div class="name">name</div>
-            <div class="row">
-                <form class="prima">
-                    <label>
-                        <input type="checkbox" value="1">
-                        <span></span>
-                    </label>
-                    <label>
-                        <input type="checkbox" value="2">
-                        <span></span>
-                    </label>
-                    <label>
-                        <input type="checkbox" value="3">
-                        <span></span>
-                    </label>
+            <div class="seq">
+                <form>
                 </form>
             </div>
-            <div class="param">params</div>
+            <div class="parameters">
+                <form class="stepcount">
+                    <label for="stepcount">step <br>count</label>
+                    <input type="number" name="stepcount" min="1" max="9" value="1">
+                    <button type="button" onclick="stepCount()">set</button>
+                </form>
+            </div>
+        </div>
+        <div class="controls">
+            <form>
+                <input type="number" min="60" max="220" value="110">
+                <button type="button" onclick="runSeq()">play</button>
+            </form>
         </div>
     </div>
-    <script src="./js/loop.js"></script>
+
+
+    <script src="./js/main.js"></script>
 </body>
 </html>
