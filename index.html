@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RhythmBox</title>
+    <link rel="shortcut icon" href="#">
     <!-- reset/init -->
+    <link rel="stylesheet" href="./css/fonts.css">
     <link rel="stylesheet" href="./css/variables.css">
     <link rel="stylesheet" href="./css/reset.css">
     <link rel="stylesheet" href="./css/layout.css">
@@ -17,6 +19,11 @@
 </head>
 <body>
     <div class="machine">
+        <div class="controls">
+            <span>tempo</span>
+            <input type="number" name="tempo" min="30" max="330" value="110">
+
+        </div>
         <div id="prima" class="track">
             <div class="name">name</div>
             <div class="seq">
@@ -26,15 +33,9 @@
             <div class="parameters">
                 <form class="stepcount">
                     <label for="stepcount">step <br>count</label>
-                    <input type="number" name="stepcount" min="2" max="9" value="2" onclick="stepCount()">
+                    <input type="number" name="stepcount" min="2" max="9" value="2" onclick="stepCount()" >
                 </form>
             </div>
-        </div>
-        <div class="controls">
-            <form>
-                <input type="number" min="60" max="220" value="110">
-                <button type="button" onclick="runSeq()">play</button>
-            </form>
         </div>
     </div>
 
