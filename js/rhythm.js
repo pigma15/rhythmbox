@@ -8,9 +8,6 @@ const stopButton = document.querySelector('.controls button[name="stop"]');
 const tempoInput = document.querySelector('.tempo input');
 const tonalityInput = document.querySelector('.tonality select');
 let tempo = 0;
-// let stepInput = {} ;
-// let stepAmount = 0;
-// let steps = [];
 let playState = false;
 
 //DIRECTORIES
@@ -30,6 +27,7 @@ function stepCount(track, trackSeq) {
         <span></span>
     </label>`
     }
+    HTML += `<div class="none"></div>`
     trackSeq.innerHTML = HTML;
     steps = document.querySelectorAll(`#${track} label.step`);
 }
@@ -44,16 +42,19 @@ function tertiaStepCount() {
 
 //SEQUENCER
 function runSeq(track, trackSeq, audio) {
-//    stepCount(track, trackSeq)
     const BPM = document.querySelector('.controls input').value;
     const tempo = (240 / BPM) * 1000;
     const stepInput = document.querySelector(`#${track} input[name="stepcount"]`);
     const stepAmount = parseFloat(stepInput.value);
     const steps = document.querySelectorAll(`#${track} label.step`);
     const step = document.querySelectorAll(`#${track} label.step input`);
+    if (step[0].checked) {
+        audio.play();
+    };
+    steps[0].style.backgroundColor = 'orange';
     const stepTime = tempo / stepAmount;
-    let currentStep = 0;
-    let prevStep = 0;
+    let currentStep = 1;
+    let prevStep = 1;
     let sequencer =        
         setInterval(
             function() {
@@ -130,4 +131,3 @@ function stop() {
     tertiaStepInput.removeAttribute('disabled');
     playState = false;
 }
-
