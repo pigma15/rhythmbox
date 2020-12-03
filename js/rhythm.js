@@ -48,7 +48,7 @@ function stepCount(track, trackSeq) {
     HTML += `<div class="none"></div>`
     trackSeq.innerHTML = HTML;
     steps = document.querySelectorAll(`#${track} label.step`);
-}
+};
 
 //INDIVIDUAL STEP COUNTS
 function primaStepCount() {
@@ -136,7 +136,7 @@ function runSeq(track, audio) {
             },
             stepTime
         );
-}
+};
 
 //INDIVIDUAL SEQUENCERS
 function prima() {
@@ -147,7 +147,7 @@ function minTertia() {
 };
 function majTertia() {
     runSeq('tertia', majTertiaAudio);
-}
+};
 function quinta() {
     runSeq('quinta', quintaAudio);
 };
