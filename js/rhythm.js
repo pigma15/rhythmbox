@@ -41,7 +41,7 @@ function tertiaStepCount() {
 };
 
 //SEQUENCER
-function runSeq(track, trackSeq, audio) {
+function runSeq(track, audio) {
     const BPM = document.querySelector('.controls input').value;
     const tempo = (240 / BPM) * 1000;
     const stepInput = document.querySelector(`#${track} input[name="stepcount"]`);
@@ -98,15 +98,14 @@ function runSeq(track, trackSeq, audio) {
             },
             stepTime
         );
-
 }
 
 //INDIVIDUAL SEQUENCERS
 function prima() {
-    runSeq('prima', primaSeq, primaAudio);
+    runSeq('prima', primaAudio);
 }
 function tertia() {
-    runSeq('tertia', tertiaSeq, tertiaAudio);
+    runSeq('tertia', tertiaAudio);
 }
 
 //TRANSPORT
