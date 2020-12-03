@@ -33,6 +33,13 @@ const snareSeq = document.querySelector('#snare div.seq > form');
 const snareStepInput = document.querySelector('#snare .parameters input');
 const hatSeq = document.querySelector('#hat div.seq > form');
 const hatStepInput = document.querySelector('#hat .parameters input');
+const primaMultiplierInput = document.querySelector('#prima .multiplier select');
+const tertiaMultiplierInput = document.querySelector('#tertia .multiplier select');
+const quintaMultiplierInput = document.querySelector('#quinta .multiplier select');
+const septimaMultiplierInput = document.querySelector('#septima .multiplier select');
+const kickMultiplierInput = document.querySelector('#kick .multiplier select');
+const snareMultiplierInput = document.querySelector('#snare .multiplier select');
+const hatMultiplierInput = document.querySelector('#hat .multiplier select');
 
 //STEPCOUNT
 function stepCount(track, trackSeq) {
@@ -75,13 +82,14 @@ function hatStepCount() {
 
 //SEQUENCER
 function runSeq(track, audio) {
+    const multiplier = parseFloat(document.querySelector(`#${track} .multiplier select`).value);
     const BPM = document.querySelector('.controls input').value;
     const tempo = (240 / BPM) * 1000;
     const stepInput = document.querySelector(`#${track} input[name="stepcount"]`);
     const stepAmount = parseInt(stepInput.value);
     const steps = document.querySelectorAll(`#${track} label.step`);
     const step = document.querySelectorAll(`#${track} label.step input`);
-    const stepTime = tempo / stepAmount;
+    const stepTime = tempo / stepAmount / multiplier;
     if (step[0].checked) {
         audio.play();
             setTimeout(() => {
@@ -180,6 +188,13 @@ function play() {
     kickStepInput.setAttribute("disabled", true);
     snareStepInput.setAttribute("disabled", true);
     hatStepInput.setAttribute("disabled", true);
+    primaMultiplierInput.setAttribute("disabled", true);
+    tertiaMultiplierInput.setAttribute("disabled", true);
+    quintaMultiplierInput.setAttribute("disabled", true);
+    septimaMultiplierInput.setAttribute("disabled", true);
+    kickMultiplierInput.setAttribute("disabled", true);
+    snareMultiplierInput.setAttribute("disabled", true);
+    hatMultiplierInput.setAttribute("disabled", true);
     playState = true;
     prima()
     quinta();
@@ -208,5 +223,12 @@ function stop() {
     kickStepInput.removeAttribute('disabled');
     snareStepInput.removeAttribute('disabled');
     hatStepInput.removeAttribute('disabled');
+    primaMultiplierInput.removeAttribute('disabled');
+    tertiaMultiplierInput.removeAttribute('disabled');
+    quintaMultiplierInput.removeAttribute('disabled');
+    septimaMultiplierInput.removeAttribute('disabled');
+    kickMultiplierInput.removeAttribute('disabled');
+    snareMultiplierInput.removeAttribute('disabled');
+    hatMultiplierInput.removeAttribute('disabled');
     playState = false;
 };
