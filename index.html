@@ -25,8 +25,8 @@
                 <input type="number" name="tempo" min="30" max="330" value="110">
             </div>
             <div class="transport">
-                <button type="button" class="fa fa-play" aria-hidden="true" onclick="runSeq()"></button>
-                <button type="button" class="fa fa-stop" aria-hidden="true"></button>
+                <button type="button" name="play" class="fa fa-play" aria-hidden="true" onclick="play()"></button>
+                <button type="button" name="stop" class="fa fa-stop" aria-hidden="true" onclick="stop()" disabled></button>
             </div>
             <div class="tonality">
                 <span>tonality</span>
@@ -40,18 +40,26 @@
             <div class="name">name</div>
             <div class="seq">
                 <form>
+                    <label class="step">
+                        <input type="checkbox" value="1">
+                        <span></span>
+                    </label>
+                    <label class="step">
+                        <input type="checkbox" value="2">
+                        <span></span>
+                    </label>
                 </form>
             </div>
             <div class="parameters">
                 <form class="stepcount">
                     <label for="stepcount">step <br>count</label>
-                    <input type="number" name="stepcount" min="2" max="9" value="2" onclick="stepCount()" >
+                    <input type="number" name="stepcount" min="2" max="9" value="2" onclick="primaStepCount()" >
                 </form>
             </div>
         </div>
     </div>
 
 
-    <script src="./js/main.js"></script>
+    <script src="./js/tryfunction.js"></script>
 </body>
 </html>

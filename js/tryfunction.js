@@ -1,36 +1,36 @@
-//AUDIO
-const primaAudio = new Audio('./audio/hh.mp3')
-
 //DATA COMMON
-let BPM = 0;
-let tempo = 0;
 const playButton = document.querySelector('.controls button[name="play"]');
 const stopButton = document.querySelector('.controls button[name="stop"]');
+let BPM = 0;
+let tempo = 0;
+let stepInput = {} ;
+let stepAmount = 0;
+let steps = [];
+
+
 
 
 //DATA PRIMA
 const primaSeq = document.querySelector('#prima div.seq > form');
-let primaStepInput = document.querySelector('#prima input[name="stepcount"]');
 
-console.log(typeof primaStepInput);
-
-let primaStepAmount = 0;
-let primaSteps = [];
-
-//PRIMA STEP COUNT
-function primaStepCount() {
-    primaStepInput = document.querySelector('#prima input[name="stepcount"]');
-    primaStepAmount = parseFloat(primaStepInput.value);
+//STEPCOUNT
+function stepCount(track, trackSeq) {
+    stepInput = document.querySelector(`#${track} input[name="stepcount"]`);
+    stepAmount = parseFloat(stepInput.value);
     let HTML = '';
-    for (i = 1; i <= primaStepAmount; i++) {
+    for (i = 1; i <= stepAmount; i++) {
         HTML += `<label class="step">
         <input type="checkbox" value="${i}">
         <span></span>
     </label>`
     }
-    primaSeq.innerHTML = HTML;
-    primaSteps = document.querySelectorAll('#prima label.step');
+    trackSeq.innerHTML = HTML;
+    steps = document.querySelectorAll(`#${track} label.step`);
 }
+
+function primaStepCount() {
+    stepCount('prima', primaSeq);
+};
 
 //PRIMA RUN SEQ LOOP
 function primaRunSeq() {
@@ -87,7 +87,3 @@ function play() {
     tempo = (240 / BPM) * 1000;
     primaRunSeq();
 }
-
-
-
-
