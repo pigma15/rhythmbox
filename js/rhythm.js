@@ -30,6 +30,7 @@ function stepCount(track, trackSeq) {
         <span></span>
     </label>`
     }
+    HTML += `<div class="none"></div>`
     trackSeq.innerHTML = HTML;
     steps = document.querySelectorAll(`#${track} label.step`);
 }
@@ -51,9 +52,13 @@ function runSeq(track, trackSeq, audio) {
     const stepAmount = parseFloat(stepInput.value);
     const steps = document.querySelectorAll(`#${track} label.step`);
     const step = document.querySelectorAll(`#${track} label.step input`);
+    if (step[0].checked) {
+        audio.play();
+    };
+    steps[0].style.backgroundColor = 'orange';
     const stepTime = tempo / stepAmount;
-    let currentStep = 0;
-    let prevStep = 0;
+    let currentStep = 1;
+    let prevStep = 1;
     let sequencer =        
         setInterval(
             function() {
@@ -131,3 +136,20 @@ function stop() {
     playState = false;
 }
 
+
+const stepTime = 500;
+
+function timing() {
+    for (i = 0; i <= 1; i++) {
+        if (i === 0) {
+            time = 10;
+            console.log(time);
+        }
+        if (i === 1) {
+            time = stepTime;
+            console.log(time);
+        }
+    }
+}
+
+timing()
