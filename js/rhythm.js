@@ -1,6 +1,10 @@
 //AUDIO
-const primaAudio = new Audio('./audio/kik.mp3');
-const tertiaAudio = new Audio('./audio/hh.mp3');
+const primaAudio = new Audio('./audio/prima.mp3');
+const minTertiaAudio = new Audio('./audio/minTertia.mp3');
+const majTertiaAudio = new Audio('./audio/majTertia.mp3');
+const quintaAudio = new Audio('./audio/quinta.mp3');
+const minSeptimaAudio = new Audio('./audio/minSeptima.mp3');
+const majSeptimaAudio = new Audio('./audio/minTertia.mp3');
 
 //DATA COMMON
 const playButton = document.querySelector('.controls button[name="play"]');
@@ -15,6 +19,10 @@ const primaSeq = document.querySelector('#prima div.seq > form');
 const primaStepInput = document.querySelector('#prima .parameters input');
 const tertiaSeq = document.querySelector('#tertia div.seq > form');
 const tertiaStepInput = document.querySelector('#tertia .parameters input');
+const quintaSeq = document.querySelector('#quinta div.seq > form');
+const quintaStepInput = document.querySelector('#quinta .parameters input');
+const septimaSeq = document.querySelector('#septima div.seq > form');
+const septimaStepInput = document.querySelector('#septima .parameters input');
 
 //STEPCOUNT
 function stepCount(track, trackSeq) {
@@ -38,6 +46,12 @@ function primaStepCount() {
 };
 function tertiaStepCount() {
     stepCount('tertia', tertiaSeq);
+};
+function quintaStepCount() {
+    stepCount('quinta', quintaSeq);
+};
+function septimaStepCount() {
+    stepCount('septima', septimaSeq);
 };
 
 //SEQUENCER
@@ -103,10 +117,22 @@ function runSeq(track, audio) {
 //INDIVIDUAL SEQUENCERS
 function prima() {
     runSeq('prima', primaAudio);
+};
+function minTertia() {
+    runSeq('tertia', minTertiaAudio);
+};
+function majTertia() {
+    runSeq('tertia', majTertiaAudio);
 }
-function tertia() {
-    runSeq('tertia', tertiaAudio);
+function quinta() {
+    runSeq('quinta', quintaAudio);
+};
+function minSeptima() {
+    runSeq('septima', minSeptimaAudio);
 }
+function majSeptima() {
+    runSeq('septima', majSeptimaAudio);
+};
 
 //TRANSPORT
 function play() {
@@ -118,7 +144,9 @@ function play() {
     tertiaStepInput.setAttribute("disabled", true);
     playState = true;
     prima()
-    tertia();
+    minTertia();
+    quinta();
+    minSeptima();
 }
 
 function stop() {

@@ -4,7 +4,7 @@ body {
     grid-template-columns: 1fr 90% 1fr;
 }
     .machine {
-        margin-top: 100px;
+        margin-top: 20px;
         display: inline-block;
         grid-column: 2/3;
     }
