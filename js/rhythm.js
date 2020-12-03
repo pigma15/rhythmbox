@@ -7,11 +7,10 @@ const playButton = document.querySelector('.controls button[name="play"]');
 const stopButton = document.querySelector('.controls button[name="stop"]');
 const tempoInput = document.querySelector('.tempo input');
 const tonalityInput = document.querySelector('.tonality select');
-let BPM = 0;
 let tempo = 0;
-let stepInput = {} ;
-let stepAmount = 0;
-let steps = [];
+// let stepInput = {} ;
+// let stepAmount = 0;
+// let steps = [];
 let playState = false;
 
 //DIRECTORIES
@@ -44,11 +43,14 @@ function tertiaStepCount() {
 };
 
 //SEQUENCER
-function runSeq(track, audio) {
-    stepInput = document.querySelector(`#${track} input[name="stepcount"]`);
-    stepAmount = parseFloat(stepInput.value);
-    steps = document.querySelectorAll(`#${track} label.step`);
-    let step = document.querySelectorAll(`#${track} label.step input`);
+function runSeq(track, trackSeq, audio) {
+//    stepCount(track, trackSeq)
+    const BPM = document.querySelector('.controls input').value;
+    const tempo = (240 / BPM) * 1000;
+    const stepInput = document.querySelector(`#${track} input[name="stepcount"]`);
+    const stepAmount = parseFloat(stepInput.value);
+    const steps = document.querySelectorAll(`#${track} label.step`);
+    const step = document.querySelectorAll(`#${track} label.step input`);
     const stepTime = tempo / stepAmount;
     let currentStep = 0;
     let prevStep = 0;
@@ -100,10 +102,10 @@ function runSeq(track, audio) {
 
 //INDIVIDUAL SEQUENCERS
 function prima() {
-    runSeq('prima', primaAudio);
+    runSeq('prima', primaSeq, primaAudio);
 }
 function tertia() {
-    runSeq('tertia', tertiaAudio);
+    runSeq('tertia', tertiaSeq, tertiaAudio);
 }
 
 //TRANSPORT
@@ -114,8 +116,6 @@ function play() {
     tonalityInput.setAttribute("disabled", true);
     primaStepInput.setAttribute("disabled", true);
     tertiaStepInput.setAttribute("disabled", true);
-    BPM = document.querySelector('.controls input').value;
-    tempo = (240 / BPM) * 1000;
     playState = true;
     prima()
     tertia();
