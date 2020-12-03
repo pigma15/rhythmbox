@@ -45,7 +45,7 @@ function runSeq(track, trackSeq, audio) {
     const BPM = document.querySelector('.controls input').value;
     const tempo = (240 / BPM) * 1000;
     const stepInput = document.querySelector(`#${track} input[name="stepcount"]`);
-    const stepAmount = parseFloat(stepInput.value);
+    const stepAmount = parseInt(stepInput.value);
     const steps = document.querySelectorAll(`#${track} label.step`);
     const step = document.querySelectorAll(`#${track} label.step input`);
     if (step[0].checked) {
