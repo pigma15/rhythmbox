@@ -136,10 +136,10 @@ function runSeq(track, audio) {
                     prevStep = 0;
                 }
                 if (playState === false ) {
-                    clearInterval(sequencer);
                     for (i = 1; i < stepAmount; i++) {
                         steps[i].style.backgroundColor = 'black';
                     }
+                    clearInterval(sequencer);
                 }
             },
             stepTime
