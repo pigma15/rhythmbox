@@ -9,3 +9,25 @@ body {
         grid-column: 2/3;
     }
 
+    .help {
+        display: flex;
+        grid-column: 2/3;
+        width: 50%;
+        justify-content: center;
+        margin-top: 30px;
+        background-color: #eee;
+        flex-wrap: wrap;
+    }
+    .help h1 {
+        display: inline-block;
+        width: 100%;
+        font-size: 24px;
+    }
+    .help p {
+        display: inline-block;
+        width: 80%;
+        font-size: 15px;
+        margin-left: 20%;
+        line-height: 18px;
+    }
+    
