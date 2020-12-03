@@ -1,10 +1,12 @@
 //AUDIO
-const primaAudio = new Audio('./audio/hh.mp3')
+const primaAudio = new Audio('./audio/kik.mp3');
+const tertiaAudio = new Audio('./audio/hh.mp3');
 
 //DATA COMMON
 const playButton = document.querySelector('.controls button[name="play"]');
 const stopButton = document.querySelector('.controls button[name="stop"]');
-const tempoInput = document.querySelector('.controls button[name="stop"]');
+const tempoInput = document.querySelector('.tempo input');
+const tonalityInput = document.querySelector('.tonality select');
 let BPM = 0;
 let tempo = 0;
 let stepInput = {} ;
@@ -14,6 +16,9 @@ let playState = false;
 
 //DIRECTORIES
 const primaSeq = document.querySelector('#prima div.seq > form');
+const primaStepInput = document.querySelector('#prima .parameters input');
+const tertiaSeq = document.querySelector('#tertia div.seq > form');
+const tertiaStepInput = document.querySelector('#tertia .parameters input');
 
 //STEPCOUNT
 function stepCount(track, trackSeq) {
@@ -33,6 +38,9 @@ function stepCount(track, trackSeq) {
 //INDIVIDUAL STEP COUNTS
 function primaStepCount() {
     stepCount('prima', primaSeq);
+};
+function tertiaStepCount() {
+    stepCount('tertia', tertiaSeq);
 };
 
 //SEQUENCER
@@ -90,19 +98,36 @@ function runSeq(track, audio) {
 
 }
 
+//INDIVIDUAL SEQUENCERS
+function prima() {
+    runSeq('prima', primaAudio);
+}
+function tertia() {
+    runSeq('tertia', tertiaAudio);
+}
+
 //TRANSPORT
 function play() {
     playButton.setAttribute("disabled", true);
-    stopButton.removeAttribute("disabled")
+    stopButton.removeAttribute("disabled");
+    tempoInput.setAttribute("disabled", true);
+    tonalityInput.setAttribute("disabled", true);
+    primaStepInput.setAttribute("disabled", true);
+    tertiaStepInput.setAttribute("disabled", true);
     BPM = document.querySelector('.controls input').value;
     tempo = (240 / BPM) * 1000;
     playState = true;
-    runSeq('prima', primaAudio);
+    prima()
+    tertia();
 }
 
 function stop() {
     stopButton.setAttribute("disabled", true);
-    playButton.removeAttribute("disabled")    
+    playButton.removeAttribute("disabled");
+    tempoInput.removeAttribute('disabled');
+    tonalityInput.removeAttribute('disabled');
+    primaStepInput.removeAttribute('disabled');
+    tertiaStepInput.removeAttribute('disabled');
     playState = false;
 }
 
