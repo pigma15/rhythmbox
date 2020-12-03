@@ -4,39 +4,54 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RhythmBox</title>
+    <link rel="shortcut icon" href="#">
     <!-- reset/init -->
-    <link rel="stylesheet" href="./css/variables.css">
+    <link rel="stylesheet" href="./css/fonts.css">
     <link rel="stylesheet" href="./css/reset.css">
     <link rel="stylesheet" href="./css/layout.css">
     <!-- 3rd party css -->
+    <link rel="stylesheet" href="./css/font-awesome.min.css">
     <!-- component -->
+    <link rel="stylesheet" href="./css/controls.css">
     <link rel="stylesheet" href="./css/track.css">
     <!-- custom -->
     <link rel="stylesheet" href="./css/custom.css">
 </head>
 <body>
     <div class="machine">
-        <div class="track">
+        <div class="controls">
+            <div class="tempo">
+                <span>tempo</span>
+                <input type="number" name="tempo" min="30" max="330" value="110">
+            </div>
+            <div class="transport">
+                <button type="button" class="fa fa-play" aria-hidden="true" onclick="runSeq()"></button>
+                <button type="button" class="fa fa-stop" aria-hidden="true"></button>
+            </div>
+            <div class="tonality">
+                <span>tonality</span>
+                <select name="tonality">
+                    <option value="major">major</option>
+                    <option value="minor">minor</option>
+                </select>
+            </div>
+        </div>
+        <div id="prima" class="track">
             <div class="name">name</div>
-            <div class="row">
-                <form class="prima">
-                    <label>
-                        <input type="checkbox" value="1">
-                        <span></span>
-                    </label>
-                    <label>
-                        <input type="checkbox" value="2">
-                        <span></span>
-                    </label>
-                    <label>
-                        <input type="checkbox" value="3">
-                        <span></span>
-                    </label>
+            <div class="seq">
+                <form>
                 </form>
             </div>
-            <div class="param">params</div>
+            <div class="parameters">
+                <form class="stepcount">
+                    <label for="stepcount">step <br>count</label>
+                    <input type="number" name="stepcount" min="2" max="9" value="2" onclick="stepCount()" >
+                </form>
+            </div>
         </div>
     </div>
-    <script src="./js/loop.js"></script>
+
+
+    <script src="./js/main.js"></script>
 </body>
 </html>
