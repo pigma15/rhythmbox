@@ -22,7 +22,7 @@
         <div class="controls">
             <div class="tempo">
                 <span>tempo</span>
-                <input type="number" name="tempo" min="30" max="330" value="110">
+                <input type="number" name="tempo" min="30" max="330" value="110" onkeydown="return false">
             </div>
             <div class="transport">
                 <button type="button" name="play" class="fa fa-play" aria-hidden="true" onclick="play()"></button>
@@ -54,7 +54,7 @@
             <div class="parameters">
                 <form class="stepcount">
                     <label for="stepcount">step <br>count</label>
-                    <input type="number" name="stepcount" min="2" max="9" value="2" onclick="primaStepCount()" >
+                    <input type="number" name="stepcount" min="2" max="9" value="2" onclick="primaStepCount()" onkeydown="return false" >
                 </form>
             </div>
         </div>
@@ -76,7 +76,7 @@
             <div class="parameters">
                 <form class="stepcount">
                     <label for="stepcount">step <br>count</label>
-                    <input type="number" name="stepcount" min="2" max="9" value="2" onclick="tertiaStepCount()" >
+                    <input type="number" name="stepcount" min="2" max="9" value="2" onclick="tertiaStepCount()" onkeydown="return false" >
                 </form>
             </div>
         </div>
