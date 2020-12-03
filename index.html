@@ -7,12 +7,12 @@
     <link rel="shortcut icon" href="#">
     <!-- reset/init -->
     <link rel="stylesheet" href="./css/fonts.css">
-    <link rel="stylesheet" href="./css/variables.css">
     <link rel="stylesheet" href="./css/reset.css">
     <link rel="stylesheet" href="./css/layout.css">
     <!-- 3rd party css -->
+    <link rel="stylesheet" href="./css/font-awesome.min.css">
     <!-- component -->
-    <link rel="stylesheet" href="./css/button.css">
+    <link rel="stylesheet" href="./css/controls.css">
     <link rel="stylesheet" href="./css/track.css">
     <!-- custom -->
     <link rel="stylesheet" href="./css/custom.css">
@@ -20,9 +20,21 @@
 <body>
     <div class="machine">
         <div class="controls">
-            <span>tempo</span>
-            <input type="number" name="tempo" min="30" max="330" value="110">
-
+            <div class="tempo">
+                <span>tempo</span>
+                <input type="number" name="tempo" min="30" max="330" value="110">
+            </div>
+            <div class="transport">
+                <button type="button" class="fa fa-play" aria-hidden="true" onclick="runSeq()"></button>
+                <button type="button" class="fa fa-stop" aria-hidden="true"></button>
+            </div>
+            <div class="tonality">
+                <span>tonality</span>
+                <select name="tonality">
+                    <option value="major">major</option>
+                    <option value="minor">minor</option>
+                </select>
+            </div>
         </div>
         <div id="prima" class="track">
             <div class="name">name</div>

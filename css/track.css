@@ -22,10 +22,11 @@
         .seq > form {
             display: flex;
             position: absolute;
-            justify-content: space-around;
+            justify-content: space-between;
             align-items: center;
-            width: 100%;
+            width: 90%;
             height: 60%;
+            margin: 0% 5%;
         }
             .seq label {
                 background-color: black;
@@ -61,7 +62,6 @@
                         background-color: red;
                     }
     .parameters {
-        background-color: rosybrown;
         display: flex;
         justify-content: space-between;
         align-items: center;
