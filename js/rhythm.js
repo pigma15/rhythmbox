@@ -4,7 +4,10 @@ const minTertiaAudio = new Audio('./audio/minTertia.mp3');
 const majTertiaAudio = new Audio('./audio/majTertia.mp3');
 const quintaAudio = new Audio('./audio/quinta.mp3');
 const minSeptimaAudio = new Audio('./audio/minSeptima.mp3');
-const majSeptimaAudio = new Audio('./audio/minTertia.mp3');
+const majSeptimaAudio = new Audio('./audio/majSeptima.mp3');
+const kickAudio = new Audio('./audio/kick.mp3');
+const snareAudio = new Audio('./audio/snare.mp3');
+const hatAudio = new Audio('./audio/hat.mp3');
 
 //DATA COMMON
 const playButton = document.querySelector('.controls button[name="play"]');
@@ -13,6 +16,7 @@ const tempoInput = document.querySelector('.tempo input');
 const tonalityInput = document.querySelector('.tonality select');
 let tempo = 0;
 let playState = false;
+
 
 //DIRECTORIES
 const primaSeq = document.querySelector('#prima div.seq > form');
@@ -23,6 +27,12 @@ const quintaSeq = document.querySelector('#quinta div.seq > form');
 const quintaStepInput = document.querySelector('#quinta .parameters input');
 const septimaSeq = document.querySelector('#septima div.seq > form');
 const septimaStepInput = document.querySelector('#septima .parameters input');
+const kickSeq = document.querySelector('#kick div.seq > form');
+const kickStepInput = document.querySelector('#kick .parameters input');
+const snareSeq = document.querySelector('#snare div.seq > form');
+const snareStepInput = document.querySelector('#snare .parameters input');
+const hatSeq = document.querySelector('#hat div.seq > form');
+const hatStepInput = document.querySelector('#hat .parameters input');
 
 //STEPCOUNT
 function stepCount(track, trackSeq) {
@@ -53,6 +63,15 @@ function quintaStepCount() {
 function septimaStepCount() {
     stepCount('septima', septimaSeq);
 };
+function kickStepCount() {
+    stepCount('kick', kickSeq);
+};
+function snareStepCount() {
+    stepCount('snare', snareSeq);
+};
+function hatStepCount() {
+    stepCount('hat', hatSeq);
+};
 
 //SEQUENCER
 function runSeq(track, audio) {
@@ -62,11 +81,16 @@ function runSeq(track, audio) {
     const stepAmount = parseInt(stepInput.value);
     const steps = document.querySelectorAll(`#${track} label.step`);
     const step = document.querySelectorAll(`#${track} label.step input`);
+    const stepTime = tempo / stepAmount;
     if (step[0].checked) {
         audio.play();
+            setTimeout(() => {
+                audio.pause();
+                audio.load();
+            }, stepTime / 1.5
+        )
     };
     steps[0].style.backgroundColor = 'orange';
-    const stepTime = tempo / stepAmount;
     let currentStep = 1;
     let prevStep = 1;
     let sequencer =        
@@ -129,9 +153,18 @@ function quinta() {
 };
 function minSeptima() {
     runSeq('septima', minSeptimaAudio);
-}
+};
 function majSeptima() {
     runSeq('septima', majSeptimaAudio);
+};
+function kick() {
+    runSeq('kick', kickAudio);
+};
+function snare() {
+    runSeq('snare', snareAudio);
+};
+function hat() {
+    runSeq('hat', hatAudio);
 };
 
 //TRANSPORT
@@ -142,12 +175,26 @@ function play() {
     tonalityInput.setAttribute("disabled", true);
     primaStepInput.setAttribute("disabled", true);
     tertiaStepInput.setAttribute("disabled", true);
+    quintaStepInput.setAttribute("disabled", true);
+    septimaStepInput.setAttribute("disabled", true);
+    kickStepInput.setAttribute("disabled", true);
+    snareStepInput.setAttribute("disabled", true);
+    hatStepInput.setAttribute("disabled", true);
     playState = true;
     prima()
-    minTertia();
     quinta();
-    minSeptima();
-}
+    if (tonalityInput.value === 'minor') {
+        minTertia();
+        minSeptima();
+    };
+    if (tonalityInput.value === 'major') {
+        majTertia();
+        majSeptima();
+    };
+    kick();
+    snare();
+    hat();
+};
 
 function stop() {
     stopButton.setAttribute("disabled", true);
@@ -156,5 +203,10 @@ function stop() {
     tonalityInput.removeAttribute('disabled');
     primaStepInput.removeAttribute('disabled');
     tertiaStepInput.removeAttribute('disabled');
+    quintaStepInput.removeAttribute('disabled');
+    septimaStepInput.removeAttribute('disabled');
+    kickStepInput.removeAttribute('disabled');
+    snareStepInput.removeAttribute('disabled');
+    hatStepInput.removeAttribute('disabled');
     playState = false;
-}
+};
