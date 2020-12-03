@@ -1,79 +1,93 @@
-//DATA
-const seq = document.querySelector('div.seq > form');
-const hat = new Audio('./audio/hh.mp3')
-let stepInput = document.querySelector('input[name="stepcount"]');
-const playButton = document.querySelector('.controls button');
+//AUDIO
+const primaAudio = new Audio('./audio/hh.mp3')
 
-
-
+//DATA COMMON
 let BPM = 0;
 let tempo = 0;
-let stepAmount = 0;
-let steps = [];
+const playButton = document.querySelector('.controls button[name="play"]');
+const stopButton = document.querySelector('.controls button[name="stop"]');
 
 
+//DATA PRIMA
+const primaSeq = document.querySelector('#prima div.seq > form');
+let primaStepInput = document.querySelector('#prima input[name="stepcount"]');
 
+console.log(typeof primaStepInput);
 
-//STEP COUNT
-function stepCount() {
-    stepInput = document.querySelector('input[name="stepcount"]');
-    stepAmount = parseFloat(stepInput.value);
+let primaStepAmount = 0;
+let primaSteps = [];
+
+//PRIMA STEP COUNT
+function primaStepCount() {
+    primaStepInput = document.querySelector('#prima input[name="stepcount"]');
+    primaStepAmount = parseFloat(primaStepInput.value);
     let HTML = '';
-    for (i = 1; i <= stepAmount; i++) {
+    for (i = 1; i <= primaStepAmount; i++) {
         HTML += `<label class="step">
         <input type="checkbox" value="${i}">
         <span></span>
     </label>`
     }
-    seq.innerHTML = HTML;
-    steps = document.querySelectorAll('label.step');
+    primaSeq.innerHTML = HTML;
+    primaSteps = document.querySelectorAll('#prima label.step');
 }
 
-//RUN SEQ LOOP
-function runSeq() {
-    stepInput.setAttribute("disabled", true);
-    playButton.setAttribute("disabled", true);
-    BPM = document.querySelector('.controls input').value;
-    tempo = (240 / BPM) * 1000;
-    stepCount();
-    let stepTime = tempo / stepAmount
+//PRIMA RUN SEQ LOOP
+function primaRunSeq() {
+    primaStepCount()
+    primaStepInput.setAttribute("disabled", true);
+    primaSteps = document.querySelectorAll('#prima label.step');
+    const stepTime = tempo / primaStepAmount; 
+    let step = document.querySelectorAll('#prima label.step input');
     let currentStep = 0;
-    let prevStep = 0;
+    let prevStep = 0;   
         setInterval(
             function() {
-                let step = document.querySelectorAll('label.step > input');
                 if (currentStep === 0) {
-                    prevStep = stepAmount - 1;
+                    prevStep = primaStepAmount - 1;
                 }
                 if(currentStep > 0) {
                     prevStep = currentStep - 1;
                 }
-                if (steps[prevStep] === undefined || steps[currentStep] === undefined) {
-                    for (i = 1; i < stepAmount; i++) {
-                        steps[i].style.backgroundColor = 'black';
+                if (primaSteps[prevStep] === undefined || primaSteps[currentStep] === undefined) {
+                    for (i = 1; i < primaStepAmount; i++) {
+                        primaSteps[i].style.backgroundColor = 'black';
                     }
-                    prevStep = stepAmount - 1;
+                    prevStep = primaStepAmount - 1;
                     currentStep = 0;
                 }
-                steps[currentStep].style.backgroundColor = 'orange';
-                steps[prevStep].style.backgroundColor = 'black';
+                primaSteps[currentStep].style.backgroundColor = 'orange';
+                primaSteps[prevStep].style.backgroundColor = 'black';
                 if (step[currentStep].checked) {
-                    hat.play();
+                    primaAudio.play();
                         setTimeout(() => {
-                            hat.pause();
-                            hat.load();
+                            primaAudio.pause();
+                            primaAudio.load();
                         }, stepTime / 1.5
                     )
                 }
                 currentStep += 1;
-                if (currentStep > stepAmount - 1) {
+                if (currentStep > primaStepAmount - 1) {
                     currentStep = 0;
                 }
                 prevStep += 1;
-                if (prevStep > stepAmount - 1) {
+                if (prevStep > primaStepAmount - 1) {
                     prevStep = 0;
                 }
             },
             stepTime
         );
 }
+
+//TRANSPORT
+function play() {
+    playButton.setAttribute("disabled", true);
+    stopButton.removeAttribute("disabled")
+    BPM = document.querySelector('.controls input').value;
+    tempo = (240 / BPM) * 1000;
+    primaRunSeq();
+}
+
+
+
+
