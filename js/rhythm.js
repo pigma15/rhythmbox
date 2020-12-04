@@ -47,10 +47,14 @@ function stepCount(track, trackSeq) {
     stepAmount = parseFloat(stepInput.value);
     let HTML = '';
     for (i = 1; i <= stepAmount; i++) {
-        HTML += `<label class="step">
-        <input type="checkbox" value="${i}">
-        <span></span>
-    </label>`
+        HTML += `<label class="prob">
+                    <input type="checkbox" value="${i}">
+                    <span></span>
+                </label>
+                <label class="step">
+                    <input type="checkbox" value="${i}">
+                    <span></span>
+                </label>`
     }
     HTML += `<div class="none"></div>`
     trackSeq.innerHTML = HTML;
