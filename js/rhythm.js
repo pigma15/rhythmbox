@@ -9,7 +9,7 @@ const kickAudio = new Audio('./audio/kick.mp3');
 const snareAudio = new Audio('./audio/snare.mp3');
 const hatAudio = new Audio('./audio/hat.mp3');
 
-//DATA COMMON
+//DATA COMMON DIRECTORIES
 const playButton = document.querySelector('.controls button[name="play"]');
 const stopButton = document.querySelector('.controls button[name="stop"]');
 const tempoInput = document.querySelector('.tempo input');
@@ -17,7 +17,7 @@ const tonalityInput = document.querySelector('.tonality select');
 let playState = false;
 
 
-//DIRECTORIES
+// DATA INDIVIDUAL DIRECTORIES
 const primaSeq = document.querySelector('#prima div.seq > form');
 const primaStepInput = document.querySelector('#prima .parameters input');
 const tertiaSeq = document.querySelector('#tertia div.seq > form');
@@ -202,7 +202,7 @@ function play() {
     snareMultiplierInput.setAttribute("disabled", true);
     hatMultiplierInput.setAttribute("disabled", true);
     playState = true;
-    prima()
+    prima();
     quinta();
     if (tonalityInput.value === 'minor') {
         minTertia();
