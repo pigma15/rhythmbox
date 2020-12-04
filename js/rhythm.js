@@ -14,7 +14,6 @@ const playButton = document.querySelector('.controls button[name="play"]');
 const stopButton = document.querySelector('.controls button[name="stop"]');
 const tempoInput = document.querySelector('.tempo input');
 const tonalityInput = document.querySelector('.tonality select');
-let tempo = 0;
 let playState = false;
 
 
@@ -96,6 +95,8 @@ function runSeq(track, audio) {
     const probStep = document.querySelectorAll(`#${track} label.prob input`);
     const stepTime = tempo / stepAmount / multiplier;
     if (step[0].checked) {
+        audio.pause();
+        audio.load();
         audio.play();
     }
     steps[0].style.backgroundColor = 'orange';
