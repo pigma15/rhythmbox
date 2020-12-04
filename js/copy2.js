@@ -39,78 +39,25 @@ const septimaMultiplierInput = document.querySelector('#septima .multiplier sele
 const kickMultiplierInput = document.querySelector('#kick .multiplier select');
 const snareMultiplierInput = document.querySelector('#snare .multiplier select');
 const hatMultiplierInput = document.querySelector('#hat .multiplier select');
-let primaStepAmount = 4;
-let tertiaStepAmount = 4;
-let quintaStepAmount = 4;
-let septimaStepAmount = 4;
-let kickStepAmount = 4;
-let snareStepAmount = 4;
-let hatStepAmount = 4;
 
 //STEPCOUNT
 function stepCount(track, trackSeq) {
-    let stepAmountBefore = 0;
-    if (track === 'prima') {
-        stepAmountBefore = primaStepAmount;
-    };
-    if (track === 'tertia') {
-        stepAmountBefore = tertiaStepAmount;
-    };
-    if (track === 'quinta') {
-        stepAmountBefore = quintaStepAmount;
-    };
-    if (track === 'septima') {
-        stepAmountBefore = septimaStepAmount;
-    };
-    if (track === 'kick') {
-        stepAmountBefore = kickStepAmount;
-    };
-    if (track === 'snare') {
-        stepAmountBefore = snareStepAmount;
-    };
-    if (track === 'hat') {
-        stepAmountBefore = hatStepAmount;
-    };
-    const form = document.querySelector(`#${track} div.seq form`)
     stepInput = document.querySelector(`#${track} input[name="stepcount"]`);
     stepAmount = parseFloat(stepInput.value);
-    if (stepAmountBefore < stepAmount) {
-        form.insertAdjacentHTML('beforeend',    `<label class="prob">
-                                                    <input type="checkbox" value="${stepAmount}">
-                                                    <span></span>
-                                                </label>
-                                                <label class="step">
-                                                    <input type="checkbox" value="${stepAmount}">
-                                                    <span></span>
-                                                </label>`);
-    };
-    if (stepAmountBefore > stepAmount) {
-        trackSeq.removeChild(trackSeq.lastElementChild);
-        trackSeq.removeChild(trackSeq.lastElementChild);
-    };
-    if (stepAmountBefore === stepAmount) {};
+    let HTML = '';
+    for (i = 1; i <= stepAmount; i++) {
+        HTML += `<label class="prob">
+                    <input type="checkbox" value="${i}">
+                    <span></span>
+                </label>
+                <label class="step">
+                    <input type="checkbox" value="${i}">
+                    <span></span>
+                </label>`
+    }
+    HTML += `<div class="none"></div>`
+    trackSeq.innerHTML = HTML;
     steps = document.querySelectorAll(`#${track} label.step`);
-    if (track === 'prima') {
-        primaStepAmount = stepAmount;
-    };
-    if (track === 'tertia') {
-        tertiaStepAmount = stepAmount;
-    };
-    if (track === 'quinta') {
-        quintaStepAmount = stepAmount;
-    };
-    if (track === 'septima') {
-        septimaStepAmount = stepAmount;
-    };
-    if (track === 'kick') {
-        kickStepAmount = stepAmount;
-    };
-    if (track === 'snare') {
-        snareStepAmount = stepAmount;
-    };
-    if (track === 'hat') {
-        hatStepAmount = stepAmount;
-    };
 };
 
 //INDIVIDUAL STEP COUNTS
@@ -165,52 +112,52 @@ function runSeq(track, audio) {
         probStep = document.querySelectorAll(`#${track} label.prob input`);
         stepTime = tempo / stepAmount / multiplier;
         let sequencer =        
-            setTimeout(
-                function() {
-                    let probability = Math.random();
-                    if (currentStep === 0) {
-                        prevStep = stepAmount - 1;
+        setTimeout(
+            function() {
+                let probability = Math.random();
+                if (currentStep === 0) {
+                    prevStep = stepAmount - 1;
+                }
+                if(currentStep > 0) {
+                    prevStep = currentStep - 1;
+                }
+                if (steps[prevStep] === undefined || steps[currentStep] === undefined) {
+                    stepAmount = parseInt(stepInput.value);
+                    for (i = 1; i < stepAmount; i++) {
+                        steps[i].style.backgroundColor = 'black';
                     }
-                    if(currentStep > 0) {
-                        prevStep = currentStep - 1;
+                    prevStep = stepAmount - 1;
+                    currentStep = 0;
+                }
+                steps[currentStep].style.backgroundColor = 'orange';
+                steps[prevStep].style.backgroundColor = 'black';
+                if (step[currentStep].checked) {
+                    if(probStep[currentStep].checked === false) {
+                        audio.pause();
+                        audio.load();
+                        audio.play();
                     }
-                    if (steps[prevStep] === undefined || steps[currentStep] === undefined) {
-                        stepAmount = parseInt(stepInput.value);
-                        for (i = 1; i < stepAmount; i++) {
-                            steps[i].style.backgroundColor = 'black';
-                        }
-                        prevStep = stepAmount - 1;
-                        currentStep = 0;
+                    if (probStep[currentStep].checked && probability < 0.5) {
+                        audio.pause();
+                        audio.load();
+                        audio.play();
                     }
-                    steps[currentStep].style.backgroundColor = 'orange';
-                    steps[prevStep].style.backgroundColor = 'black';
-                    if (step[currentStep].checked) {
-                        if(probStep[currentStep].checked === false) {
-                            audio.pause();
-                            audio.load();
-                            audio.play();
-                        }
-                        if (probStep[currentStep].checked && probability < 0.5) {
-                            audio.pause();
-                            audio.load();
-                            audio.play();
-                        }
+                }
+                currentStep += 1;
+                if (currentStep > stepAmount - 1) {
+                    currentStep = 0;
+                }
+                if (playState === false ) {
+                    for (i = 1; i < stepAmount; i++) {
+                        steps[i].style.backgroundColor = 'black';
                     }
-                    currentStep += 1;
-                    if (currentStep > stepAmount - 1) {
-                        currentStep = 0;
-                    }
-                    if (playState === false ) {
-                        for (i = 1; i < stepAmount; i++) {
-                            steps[i].style.backgroundColor = 'black';
-                        }
-                        clearTimeout(sequencer);
-                    } else {
-                        time();
-                    }
-                },
-                stepTime
-            );
+                    clearTimeout(sequencer);
+                } else {
+                    time();
+                }
+            },
+            stepTime
+        );
     }
     time();
 };
