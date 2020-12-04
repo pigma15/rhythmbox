@@ -104,6 +104,8 @@ function runSeq(track, audio) {
     let sequencer =        
         setInterval(
             function() {
+                let a = Math.random();
+                console.log(a);
                 if (currentStep === 0) {
                     prevStep = stepAmount - 1;
                 }

@@ -38,6 +38,11 @@
                 border: 2px solid black;
                 border-radius: 50%;
             }
+            .seq label.probability{
+                background-color: grey;
+                height: 10px;
+                justify-self: self-start;
+            }
                 .seq input {
                     display: inline-block;
                     opacity: 0;
