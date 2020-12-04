@@ -97,12 +97,7 @@ function runSeq(track, audio) {
     const stepTime = tempo / stepAmount / multiplier;
     if (step[0].checked) {
         audio.play();
-            setTimeout(() => {
-                audio.pause();
-                audio.load();
-            }, stepTime / 1.5
-        )
-    };
+    }
     steps[0].style.backgroundColor = 'orange';
     let currentStep = 1;
     let prevStep = 1;
@@ -110,10 +105,6 @@ function runSeq(track, audio) {
         setInterval(
             function() {
                 let probability = Math.random();
-                if (probStep[currentStep].checked) {
-                    console.log(probability);
-                //    console.log(probability < 0.5);
-                }
                 if (currentStep === 0) {
                     prevStep = stepAmount - 1;
                 }
@@ -131,20 +122,14 @@ function runSeq(track, audio) {
                 steps[prevStep].style.backgroundColor = 'black';
                 if (step[currentStep].checked) {
                     if(probStep[currentStep].checked === false) {
+                        audio.pause();
+                        audio.load();
                         audio.play();
-                            setTimeout(() => {
-                                audio.pause();
-                                audio.load();
-                            }, stepTime / 1.5
-                        )
                     }
                     if (probStep[currentStep].checked && probability < 0.5) {
+                        audio.pause();
+                        audio.load();
                         audio.play();
-                        setTimeout(() => {
-                            audio.pause();
-                            audio.load();
-                        }, stepTime / 1.5
-                    )
                     }
                 }
                 currentStep += 1;
