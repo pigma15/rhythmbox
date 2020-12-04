@@ -28,7 +28,6 @@
             position: absolute;
             flex-flow: column;
             flex-wrap: wrap;
-            align-items: center;
             width: 95%;
             height: 78px;
             margin-left: 5%;
@@ -69,13 +68,14 @@
                     }
 /* here goes prob */
             .seq label.prob {
+                width: 30px;
                 height: 12px;
                 border-radius: 5px;
-                margin: 10px 0px 0px 0px;
+                margin: 10px 2px 0px 2px;
             }
                 .seq label.prob span {
                     height: 10px;
-                    width: 30px;
+                    width: 28px;
                     border-radius: 3px;
                 }
     .parameters {
