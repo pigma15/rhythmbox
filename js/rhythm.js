@@ -165,52 +165,52 @@ function runSeq(track, audio) {
         probStep = document.querySelectorAll(`#${track} label.prob input`);
         stepTime = tempo / stepAmount / multiplier;
         let sequencer =        
-        setTimeout(
-            function() {
-                let probability = Math.random();
-                if (currentStep === 0) {
-                    prevStep = stepAmount - 1;
-                }
-                if(currentStep > 0) {
-                    prevStep = currentStep - 1;
-                }
-                if (steps[prevStep] === undefined || steps[currentStep] === undefined) {
-                    stepAmount = parseInt(stepInput.value);
-                    for (i = 1; i < stepAmount; i++) {
-                        steps[i].style.backgroundColor = 'black';
+            setTimeout(
+                function() {
+                    let probability = Math.random();
+                    if (currentStep === 0) {
+                        prevStep = stepAmount - 1;
                     }
-                    prevStep = stepAmount - 1;
-                    currentStep = 0;
-                }
-                steps[currentStep].style.backgroundColor = 'orange';
-                steps[prevStep].style.backgroundColor = 'black';
-                if (step[currentStep].checked) {
-                    if(probStep[currentStep].checked === false) {
-                        audio.pause();
-                        audio.load();
-                        audio.play();
+                    if(currentStep > 0) {
+                        prevStep = currentStep - 1;
                     }
-                    if (probStep[currentStep].checked && probability < 0.5) {
-                        audio.pause();
-                        audio.load();
-                        audio.play();
+                    if (steps[prevStep] === undefined || steps[currentStep] === undefined) {
+                        stepAmount = parseInt(stepInput.value);
+                        for (i = 1; i < stepAmount; i++) {
+                            steps[i].style.backgroundColor = 'black';
+                        }
+                        prevStep = stepAmount - 1;
+                        currentStep = 0;
                     }
-                }
-                currentStep += 1;
-                if (currentStep > stepAmount - 1) {
-                    currentStep = 0;
-                }
-                if (playState === false ) {
-                    for (i = 1; i < stepAmount; i++) {
-                        steps[i].style.backgroundColor = 'black';
+                    steps[currentStep].style.backgroundColor = 'orange';
+                    steps[prevStep].style.backgroundColor = 'black';
+                    if (step[currentStep].checked) {
+                        if(probStep[currentStep].checked === false) {
+                            audio.pause();
+                            audio.load();
+                            audio.play();
+                        }
+                        if (probStep[currentStep].checked && probability < 0.5) {
+                            audio.pause();
+                            audio.load();
+                            audio.play();
+                        }
                     }
-                    clearTimeout(sequencer);
-                } else {
-                    time();
-                }
-            },
-            stepTime
-        );
+                    currentStep += 1;
+                    if (currentStep > stepAmount - 1) {
+                        currentStep = 0;
+                    }
+                    if (playState === false ) {
+                        for (i = 1; i < stepAmount; i++) {
+                            steps[i].style.backgroundColor = 'black';
+                        }
+                        clearTimeout(sequencer);
+                    } else {
+                        time();
+                    }
+                },
+                stepTime
+            );
     }
     time();
 };
