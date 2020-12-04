@@ -39,77 +39,25 @@ const septimaMultiplierInput = document.querySelector('#septima .multiplier sele
 const kickMultiplierInput = document.querySelector('#kick .multiplier select');
 const snareMultiplierInput = document.querySelector('#snare .multiplier select');
 const hatMultiplierInput = document.querySelector('#hat .multiplier select');
-let primaStepAmount = 4;
-let tertiaStepAmount = 4;
-let quintaStepAmount = 4;
-let septimaStepAmount = 4;
-let kickStepAmount = 4;
-let snareStepAmount = 4;
-let hatStepAmount = 4;
 
 //STEPCOUNT
 function stepCount(track, trackSeq) {
-    let stepAmountBefore = 0;
-    if (track === 'prima') {
-        stepAmountBefore = primaStepAmount;
-    };
-    if (track === 'tertia') {
-        stepAmountBefore = tertiaStepAmount;
-    };
-    if (track === 'quinta') {
-        stepAmountBefore = quintaStepAmount;
-    };
-    if (track === 'septima') {
-        stepAmountBefore = septimaStepAmount;
-    };
-    if (track === 'kick') {
-        stepAmountBefore = kickStepAmount;
-    };
-    if (track === 'snare') {
-        stepAmountBefore = snareStepAmount;
-    };
-    if (track === 'hat') {
-        stepAmountBefore = hatStepAmount;
-    };
-    const form = document.querySelector(`#${track} div.seq form`)
     stepInput = document.querySelector(`#${track} input[name="stepcount"]`);
     stepAmount = parseFloat(stepInput.value);
-    if (stepAmountBefore < stepAmount) {
-        form.insertAdjacentHTML('beforeend',    `<label class="prob">
-                                                    <input type="checkbox" value="${stepAmount}">
-                                                    <span></span>
-                                                </label>
-                                                <label class="step">
-                                                    <input type="checkbox" value="${stepAmount}">
-                                                    <span></span>
-                                                </label>`);
-    };
-    if (stepAmountBefore > stepAmount) {
-        trackSeq.removeChild(trackSeq.lastElementChild);
-        trackSeq.removeChild(trackSeq.lastElementChild);
-    };
+    let HTML = '';
+    for (i = 1; i <= stepAmount; i++) {
+        HTML += `<label class="prob">
+                    <input type="checkbox" value="${i}">
+                    <span></span>
+                </label>
+                <label class="step">
+                    <input type="checkbox" value="${i}">
+                    <span></span>
+                </label>`
+    }
+    HTML += `<div class="none"></div>`
+    trackSeq.innerHTML = HTML;
     steps = document.querySelectorAll(`#${track} label.step`);
-    if (track === 'prima') {
-        primaStepAmount = stepAmount;
-    };
-    if (track === 'tertia') {
-        tertiaStepAmount = stepAmount;
-    };
-    if (track === 'quinta') {
-        quintaStepAmount = stepAmount;
-    };
-    if (track === 'septima') {
-        septimaStepAmount = stepAmount;
-    };
-    if (track === 'kick') {
-        kickStepAmount = stepAmount;
-    };
-    if (track === 'snare') {
-        snareStepAmount = stepAmount;
-    };
-    if (track === 'hat') {
-        hatStepAmount = stepAmount;
-    };
 };
 
 //INDIVIDUAL STEP COUNTS

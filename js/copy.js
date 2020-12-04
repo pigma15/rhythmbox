@@ -39,77 +39,25 @@ const septimaMultiplierInput = document.querySelector('#septima .multiplier sele
 const kickMultiplierInput = document.querySelector('#kick .multiplier select');
 const snareMultiplierInput = document.querySelector('#snare .multiplier select');
 const hatMultiplierInput = document.querySelector('#hat .multiplier select');
-let primaStepAmount = 4;
-let tertiaStepAmount = 4;
-let quintaStepAmount = 4;
-let septimaStepAmount = 4;
-let kickStepAmount = 4;
-let snareStepAmount = 4;
-let hatStepAmount = 4;
 
 //STEPCOUNT
 function stepCount(track, trackSeq) {
-    let stepAmountBefore = 0;
-    if (track === 'prima') {
-        stepAmountBefore = primaStepAmount;
-    };
-    if (track === 'tertia') {
-        stepAmountBefore = tertiaStepAmount;
-    };
-    if (track === 'quinta') {
-        stepAmountBefore = quintaStepAmount;
-    };
-    if (track === 'septima') {
-        stepAmountBefore = septimaStepAmount;
-    };
-    if (track === 'kick') {
-        stepAmountBefore = kickStepAmount;
-    };
-    if (track === 'snare') {
-        stepAmountBefore = snareStepAmount;
-    };
-    if (track === 'hat') {
-        stepAmountBefore = hatStepAmount;
-    };
-    const form = document.querySelector(`#${track} div.seq form`)
     stepInput = document.querySelector(`#${track} input[name="stepcount"]`);
     stepAmount = parseFloat(stepInput.value);
-    if (stepAmountBefore < stepAmount) {
-        form.insertAdjacentHTML('beforeend',    `<label class="prob">
-                                                    <input type="checkbox" value="${stepAmount}">
-                                                    <span></span>
-                                                </label>
-                                                <label class="step">
-                                                    <input type="checkbox" value="${stepAmount}">
-                                                    <span></span>
-                                                </label>`);
-    };
-    if (stepAmountBefore > stepAmount) {
-        trackSeq.removeChild(trackSeq.lastElementChild);
-        trackSeq.removeChild(trackSeq.lastElementChild);
-    };
+    let HTML = '';
+    for (i = 1; i <= stepAmount; i++) {
+        HTML += `<label class="prob">
+                    <input type="checkbox" value="${i}">
+                    <span></span>
+                </label>
+                <label class="step">
+                    <input type="checkbox" value="${i}">
+                    <span></span>
+                </label>`
+    }
+    HTML += `<div class="none"></div>`
+    trackSeq.innerHTML = HTML;
     steps = document.querySelectorAll(`#${track} label.step`);
-    if (track === 'prima') {
-        primaStepAmount = stepAmount;
-    };
-    if (track === 'tertia') {
-        tertiaStepAmount = stepAmount;
-    };
-    if (track === 'quinta') {
-        quintaStepAmount = stepAmount;
-    };
-    if (track === 'septima') {
-        septimaStepAmount = stepAmount;
-    };
-    if (track === 'kick') {
-        kickStepAmount = stepAmount;
-    };
-    if (track === 'snare') {
-        snareStepAmount = stepAmount;
-    };
-    if (track === 'hat') {
-        hatStepAmount = stepAmount;
-    };
 };
 
 //INDIVIDUAL STEP COUNTS
@@ -137,15 +85,15 @@ function hatStepCount() {
 
 //SEQUENCER
 function runSeq(track, audio) {
-    let multiplier = parseFloat(document.querySelector(`#${track} .multiplier select`).value);
-    let BPM = document.querySelector('.controls input').value;
-    let tempo = (240 / BPM) * 1000;
+    const multiplier = parseFloat(document.querySelector(`#${track} .multiplier select`).value);
+    const BPM = document.querySelector('.controls input').value;
+    const tempo = (240 / BPM) * 1000;
     const stepInput = document.querySelector(`#${track} input[name="stepcount"]`);
-    let stepAmount = parseInt(stepInput.value);
-    let steps = document.querySelectorAll(`#${track} label.step`);
-    let step = document.querySelectorAll(`#${track} label.step input`);
-    let probStep = document.querySelectorAll(`#${track} label.prob input`);
-    let stepTime = tempo / stepAmount / multiplier;
+    const stepAmount = parseInt(stepInput.value);
+    const steps = document.querySelectorAll(`#${track} label.step`);
+    const step = document.querySelectorAll(`#${track} label.step input`);
+    const probStep = document.querySelectorAll(`#${track} label.prob input`);
+    const stepTime = tempo / stepAmount / multiplier;
     if (step[0].checked) {
         audio.pause();
         audio.load();
@@ -154,17 +102,8 @@ function runSeq(track, audio) {
     steps[0].style.backgroundColor = 'orange';
     let currentStep = 1;
     let prevStep = 1;
-    function time() {
-        multiplier = parseFloat(document.querySelector(`#${track} .multiplier select`).value);
-        BPM = document.querySelector('.controls input').value;
-        tempo = (240 / BPM) * 1000;
-        stepAmount = parseInt(stepInput.value);
-        steps = document.querySelectorAll(`#${track} label.step`);
-        step = document.querySelectorAll(`#${track} label.step input`);
-        probStep = document.querySelectorAll(`#${track} label.prob input`);
-        stepTime = tempo / stepAmount / multiplier;
-        let sequencer =        
-        setTimeout(
+    let sequencer =        
+        setInterval(
             function() {
                 let probability = Math.random();
                 if (currentStep === 0) {
@@ -174,7 +113,6 @@ function runSeq(track, audio) {
                     prevStep = currentStep - 1;
                 }
                 if (steps[prevStep] === undefined || steps[currentStep] === undefined) {
-                    stepAmount = parseInt(stepInput.value);
                     for (i = 1; i < stepAmount; i++) {
                         steps[i].style.backgroundColor = 'black';
                     }
@@ -199,19 +137,19 @@ function runSeq(track, audio) {
                 if (currentStep > stepAmount - 1) {
                     currentStep = 0;
                 }
+                prevStep += 1;
+                if (prevStep > stepAmount - 1) {
+                    prevStep = 0;
+                }
                 if (playState === false ) {
                     for (i = 1; i < stepAmount; i++) {
                         steps[i].style.backgroundColor = 'black';
                     }
-                    clearTimeout(sequencer);
-                } else {
-                    time();
+                    clearInterval(sequencer);
                 }
             },
             stepTime
         );
-    }
-    time();
 };
 
 //INDIVIDUAL SEQUENCERS
@@ -247,7 +185,22 @@ function hat() {
 function play() {
     playButton.setAttribute("disabled", true);
     stopButton.removeAttribute("disabled");
+    tempoInput.setAttribute("disabled", true);
     tonalityInput.setAttribute("disabled", true);
+    primaStepInput.setAttribute("disabled", true);
+    tertiaStepInput.setAttribute("disabled", true);
+    quintaStepInput.setAttribute("disabled", true);
+    septimaStepInput.setAttribute("disabled", true);
+    kickStepInput.setAttribute("disabled", true);
+    snareStepInput.setAttribute("disabled", true);
+    hatStepInput.setAttribute("disabled", true);
+    primaMultiplierInput.setAttribute("disabled", true);
+    tertiaMultiplierInput.setAttribute("disabled", true);
+    quintaMultiplierInput.setAttribute("disabled", true);
+    septimaMultiplierInput.setAttribute("disabled", true);
+    kickMultiplierInput.setAttribute("disabled", true);
+    snareMultiplierInput.setAttribute("disabled", true);
+    hatMultiplierInput.setAttribute("disabled", true);
     playState = true;
     prima();
     quinta();
@@ -267,6 +220,21 @@ function play() {
 function stop() {
     stopButton.setAttribute("disabled", true);
     playButton.removeAttribute("disabled");
+    tempoInput.removeAttribute('disabled');
     tonalityInput.removeAttribute('disabled');
+    primaStepInput.removeAttribute('disabled');
+    tertiaStepInput.removeAttribute('disabled');
+    quintaStepInput.removeAttribute('disabled');
+    septimaStepInput.removeAttribute('disabled');
+    kickStepInput.removeAttribute('disabled');
+    snareStepInput.removeAttribute('disabled');
+    hatStepInput.removeAttribute('disabled');
+    primaMultiplierInput.removeAttribute('disabled');
+    tertiaMultiplierInput.removeAttribute('disabled');
+    quintaMultiplierInput.removeAttribute('disabled');
+    septimaMultiplierInput.removeAttribute('disabled');
+    kickMultiplierInput.removeAttribute('disabled');
+    snareMultiplierInput.removeAttribute('disabled');
+    hatMultiplierInput.removeAttribute('disabled');
     playState = false;
 };
