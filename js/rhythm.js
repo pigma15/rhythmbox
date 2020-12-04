@@ -88,6 +88,7 @@ function stepCount(track, trackSeq) {
         trackSeq.removeChild(trackSeq.lastElementChild);
         trackSeq.removeChild(trackSeq.lastElementChild);
     };
+    if (stepAmountBefore === stepAmount) {};
     steps = document.querySelectorAll(`#${track} label.step`);
     if (track === 'prima') {
         primaStepAmount = stepAmount;
