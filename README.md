@@ -13,3 +13,5 @@ help:
 *    if circle is red and rectangle is red - 50% for sound to be triggered
 *    if circle is red and rectangle is grey - sound is triggered
 7. stop and rearrange
+
+started to develop: 2020-11-27
