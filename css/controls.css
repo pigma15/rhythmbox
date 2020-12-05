@@ -45,6 +45,15 @@
             color: hsl(174, 20%, 80%);
             filter: drop-shadow(0px 0px 1px hsl(219, 20%, 50%));
             cursor: e-resize;
+            transition: 0.5s;
+        }
+        .tempo input:hover {
+            background-color: #2475;
+            color: hsl(219, 40%, 90%);
+        }
+        .tempo input:focus {
+            outline: none;
+            color: hsl(219, 40%, 100%);
         }
         .tempo input::-webkit-inner-spin-button {
             display: inline-block;
@@ -84,6 +93,7 @@
             height: 77%;
             margin: 2% 2% 1% 2%;
             box-shadow: none;
+            cursor: default;
         }
         .transport button:active {
             outline: none;
@@ -93,19 +103,44 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 36%;
-        margin: 0% 1%;
         height: 80%;
+        background-color: #02051288;
+        width: 32%;
+        margin: 0% 1% 0% 4%;
+        border: 2px solid black;
+        border-radius: 8px;
     }
         .tonality span {
             display: inline-block;
-            width: 40%;
-            font-size: 16px;
+            font-size: 20px;
+            width: 54%;
+            margin-right: 2%;
             text-align: right;
+            color: hsl(219, 20%, 90%);
+            filter: drop-shadow(0px 0px 2px hsl(39, 40%, 90%));
+            cursor: e-resize;
         }
         .tonality select {
             display: inline-block;
             width: 40%;
+            margin: 0% 2%;
             height: 80%;
-            font-size: 24px;
+            font-size: 22px;
+            display: inline-block;
+            height: 60%;
+            text-align: center;
+            background-color: #4444;
+            color: hsl(174, 20%, 80%);
+            filter: drop-shadow(0px 0px 1px hsl(219, 20%, 50%));
+            cursor: pointer;
+            transition: 0.5s;
+            border: none;
+        }
+        .tonality select:hover {
+            background-color: #2475;
+            color: hsl(219, 40%, 90%);
+        }
+        .tonality select:focus {
+            outline: none;
+            color: hsl(219, 40%, 100%);
         }
