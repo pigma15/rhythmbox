@@ -75,18 +75,27 @@ function stepCount(track, trackSeq) {
     stepInput = document.querySelector(`#${track} input[name="stepcount"]`);
     stepAmount = parseFloat(stepInput.value);
     if (stepAmountBefore < stepAmount) {
-        form.insertAdjacentHTML('beforeend',    `<label class="prob">
-                                                    <input type="checkbox" value="${stepAmount}">
-                                                    <span></span>
-                                                </label>
-                                                <label class="step">
-                                                    <input type="checkbox" value="${stepAmount}">
-                                                    <span></span>
-                                                </label>`);
+        let quantity = stepAmount - stepAmountBefore;
+        for (i = stepAmount - quantity; i < stepAmount; i++) {
+            form.insertAdjacentHTML('beforeend',    `<label class="prob">
+                                                        <input type="checkbox" value="${i + 1}">
+                                                        <span></span>
+                                                    </label>
+                                                    <label class="step">
+                                                        <input type="checkbox" value="${i + 1}">
+                                                        <span></span>
+                                                    </label>`);
+        };
     };
     if (stepAmountBefore > stepAmount) {
-        trackSeq.removeChild(trackSeq.lastElementChild);
-        trackSeq.removeChild(trackSeq.lastElementChild);
+        console.log(stepAmountBefore);
+        console.log(stepAmount);
+        let quantity = stepAmountBefore - stepAmount;
+        console.log(quantity);
+        for (i = 0; i < quantity; i++) {
+            trackSeq.removeChild(trackSeq.lastElementChild);
+            trackSeq.removeChild(trackSeq.lastElementChild);
+        };
     };
     if (stepAmountBefore === stepAmount) {};
     steps = document.querySelectorAll(`#${track} label.step`);
