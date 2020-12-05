@@ -12,43 +12,82 @@
     border-bottom-right-radius: 5px;
 }
     .controls > .tempo {
+        background-color: #02051288;
         display: flex;
         align-items: center;
-        width: 30%;
+        width: 26%;
         height: 80%;
+        margin-left: 4%;
+        border: 2px solid black;
+        border-radius: 8px;
     }
         .controls span::after {
             content: ':';
         }
         .tempo span {
             display: inline-block;
-            font-size: 26x;
+            font-size: 20px;
             width: 40%;
             margin: 0% 0% 0% 10%;
             text-align: right;
+            color: hsl(219, 20%, 90%);
+            filter: drop-shadow(0px 0px 2px hsl(39, 40%, 90%));
+            cursor: e-resize;
         }
         .tempo input {
             display: inline-block;
             width: 46%;
             height: 60%;
             margin: 0% 2%;
-            font-size: 26px;
+            font-size: 24px;
             text-align: center;
+            background-color: #4444;
+            color: hsl(174, 20%, 80%);
+            filter: drop-shadow(0px 0px 1px hsl(219, 20%, 50%));
+            cursor: e-resize;
+        }
+        .tempo input::-webkit-inner-spin-button {
+            display: inline-block;
+            cursor: pointer;
         }
     .controls .transport {
+        background-color: #1113;
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 30%;
+        width: 26%;
         height: 80%;
-        margin: 0% 1%;
+        margin: 0% 3%;
+        border: 1px solid transparent;
+        border-radius: 3px;
+        box-shadow: 0px 0px 3px 3px #1118;
     }
         .transport button {
+            background-color:  hsl(219, 90%, 90%);
             display: inline-block;
-            width: 40%;
+            width: 45%;
             height: 80%;
             font-size: 30px;
             margin: 0% 1%;
+            color: hsla(39, 10%, 10%, 1);
+            filter: blur(0px);
+            box-shadow: 0px 2px 2px hsl(219, 30%, 10%);
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .transport button:disabled {
+            background-color:  hsl(219, 20%, 80%);
+            filter: blur(1px);
+            color: hsla(39, 20%, 9%, 0.8);
+            font-size: 28px;
+            width: 43%;
+            height: 77%;
+            margin: 2% 2% 1% 2%;
+            box-shadow: none;
+        }
+        .transport button:active {
+            outline: none;
+            box-shadow: none;
         }
     .controls .tonality {
         display: flex;
