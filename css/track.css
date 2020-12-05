@@ -12,14 +12,36 @@
     border-top-left-radius: 8px;
     border-bottom-left-radius: 30px;
 }
+.track:last-child {
+    border-bottom-right-radius: 10px;
+}
     .name {
         display: flex;
         justify-content: center;
         align-items: center;
         width: 15%;
-        height: 100%;
+        height: 70%;
         float: left;
+        border-right: 2px solid #4446;
+        border-radius: 8px;
     }
+        .name > i {
+            display: inline-block;
+            width: 8%;
+            margin-left: 5%;
+            color: #444;
+        }
+        .name > span {
+            display: inline-block;
+            width: 80%;
+            text-align: right;
+            color: #222;
+            margin-left: 7%;
+            cursor: default;
+        }
+            .name > span::after {
+                content: ':';
+            }
     .seq {
         display: flex;
         position: relative;
@@ -76,7 +98,6 @@
                         background-color: hsl(174, 100%, 90%);
                         box-shadow: 0px 1px 10px 10px hsl(174, 100%, 90%);
                     }
-/* here goes prob */
             .seq label.prob {
                 width: 30px;
                 height: 12px;
@@ -119,6 +140,7 @@
                 text-align: center;
             }
         .multiplier {
+            background-color: #333;
             display: inline-block;
             width: 48%;
             height: 98%;

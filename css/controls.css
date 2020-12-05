@@ -144,3 +144,8 @@
             outline: none;
             color: hsl(219, 40%, 100%);
         }
+        .tonality select:disabled {
+            cursor: default;
+            color: hsl(174, 20%, 30%);
+            background-color: #2225;
+        }
