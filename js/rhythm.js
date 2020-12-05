@@ -75,18 +75,27 @@ function stepCount(track, trackSeq) {
     stepInput = document.querySelector(`#${track} input[name="stepcount"]`);
     stepAmount = parseFloat(stepInput.value);
     if (stepAmountBefore < stepAmount) {
-        form.insertAdjacentHTML('beforeend',    `<label class="prob">
-                                                    <input type="checkbox" value="${stepAmount}">
-                                                    <span></span>
-                                                </label>
-                                                <label class="step">
-                                                    <input type="checkbox" value="${stepAmount}">
-                                                    <span></span>
-                                                </label>`);
+        let quantity = stepAmount - stepAmountBefore;
+        for (i = stepAmount - quantity; i < stepAmount; i++) {
+            form.insertAdjacentHTML('beforeend',    `<label class="prob">
+                                                        <input type="checkbox" value="${i + 1}">
+                                                        <span></span>
+                                                    </label>
+                                                    <label class="step">
+                                                        <input type="checkbox" value="${i + 1}">
+                                                        <span></span>
+                                                    </label>`);
+        };
     };
     if (stepAmountBefore > stepAmount) {
-        trackSeq.removeChild(trackSeq.lastElementChild);
-        trackSeq.removeChild(trackSeq.lastElementChild);
+        console.log(stepAmountBefore);
+        console.log(stepAmount);
+        let quantity = stepAmountBefore - stepAmount;
+        console.log(quantity);
+        for (i = 0; i < quantity; i++) {
+            trackSeq.removeChild(trackSeq.lastElementChild);
+            trackSeq.removeChild(trackSeq.lastElementChild);
+        };
     };
     if (stepAmountBefore === stepAmount) {};
     steps = document.querySelectorAll(`#${track} label.step`);
@@ -153,6 +162,7 @@ function runSeq(track, audio) {
         audio.play();
     }
     steps[0].style.backgroundColor = 'orange';
+    steps[0].style.boxShadow = '0px 1px 15px 3px orange';
     let currentStep = 1;
     let prevStep = 1;
     function time() {
@@ -177,13 +187,16 @@ function runSeq(track, audio) {
                     if (steps[prevStep] === undefined || steps[currentStep] === undefined) {
                         stepAmount = parseInt(stepInput.value);
                         for (i = 1; i < stepAmount; i++) {
-                            steps[i].style.backgroundColor = 'black';
+                            steps[i].style.backgroundColor = 'hsla(230, 30%, 30%, 0.8)';
+                            steps[i].style.boxShadow = 'none';
                         }
                         prevStep = stepAmount - 1;
                         currentStep = 0;
                     }
                     steps[currentStep].style.backgroundColor = 'orange';
-                    steps[prevStep].style.backgroundColor = 'black';
+                    steps[currentStep].style.boxShadow = '0px 1px 15px 3px orange';
+                    steps[prevStep].style.backgroundColor = 'hsla(230, 30%, 30%, 0.8)';
+                    steps[prevStep].style.boxShadow = 'none';
                     if (step[currentStep].checked) {
                         if(probStep[currentStep].checked === false) {
                             audio.pause();
@@ -202,7 +215,8 @@ function runSeq(track, audio) {
                     }
                     if (playState === false ) {
                         for (i = 1; i < stepAmount; i++) {
-                            steps[i].style.backgroundColor = 'black';
+                            steps[i].style.backgroundColor = 'hsla(230, 30%, 30%, 0.8)';
+                            steps[i].style.boxShadow = 'none';
                         }
                         clearTimeout(sequencer);
                     } else {
