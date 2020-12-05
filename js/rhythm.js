@@ -88,10 +88,7 @@ function stepCount(track, trackSeq) {
         };
     };
     if (stepAmountBefore > stepAmount) {
-        console.log(stepAmountBefore);
-        console.log(stepAmount);
         let quantity = stepAmountBefore - stepAmount;
-        console.log(quantity);
         for (i = 0; i < quantity; i++) {
             trackSeq.removeChild(trackSeq.lastElementChild);
             trackSeq.removeChild(trackSeq.lastElementChild);
@@ -149,7 +146,7 @@ function hatStepCount() {
 function runSeq(track, audio) {
     let multiplier = parseFloat(document.querySelector(`#${track} .multiplier select`).value);
     let BPM = document.querySelector('.controls input').value;
-    let tempo = (240 / BPM) * 1000;
+    let tempo = 240000 / BPM;
     const stepInput = document.querySelector(`#${track} input[name="stepcount"]`);
     let stepAmount = parseInt(stepInput.value);
     let steps = document.querySelectorAll(`#${track} label.step`);
@@ -168,7 +165,7 @@ function runSeq(track, audio) {
     function time() {
         multiplier = parseFloat(document.querySelector(`#${track} .multiplier select`).value);
         BPM = document.querySelector('.controls input').value;
-        tempo = (240 / BPM) * 1000;
+        tempo = 240000 / BPM;
         stepAmount = parseInt(stepInput.value);
         steps = document.querySelectorAll(`#${track} label.step`);
         step = document.querySelectorAll(`#${track} label.step input`);
@@ -186,7 +183,7 @@ function runSeq(track, audio) {
                     }
                     if (steps[prevStep] === undefined || steps[currentStep] === undefined) {
                         stepAmount = parseInt(stepInput.value);
-                        for (i = 1; i < stepAmount; i++) {
+                        for (i = 1; i < stepAmount - 1; i++) {
                             steps[i].style.backgroundColor = 'hsla(230, 30%, 30%, 0.8)';
                             steps[i].style.boxShadow = 'none';
                         }
