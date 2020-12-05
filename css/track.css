@@ -166,6 +166,10 @@
                 .stepcount input::-webkit-inner-spin-button {
                     display: inline-block;
                     cursor: pointer;
+                    opacity: 0.5;
+                }
+                .stepcount input::-webkit-inner-spin-button:hover {
+                    opacity: 0.9;
                 }
         .multiplier {
             background-color: #020511af;

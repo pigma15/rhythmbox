@@ -58,6 +58,10 @@
         .tempo input::-webkit-inner-spin-button {
             display: inline-block;
             cursor: pointer;
+            opacity: 0.5;
+        }
+        .tempo input::-webkit-inner-spin-button:hover {
+            opacity: 0.9;
         }
     .controls .transport {
         background-color: #1113;
