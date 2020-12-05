@@ -1,11 +1,16 @@
 .track {
-    background-color: #333;
+    background-color: #9992;
+    background-image: radial-gradient(farthest-corner at 40% 60%, #ddd3, #aaab);
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
     height: 78px;
     margin: 1px 0px;
+    border: #7777 2px solid;
+    border-radius: 5px;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 30px;
 }
     .name {
         display: flex;
@@ -33,7 +38,7 @@
             margin-left: 5%;
         }
             .seq label {
-                background-color: black;
+                background-color: hsla(230, 30%, 30%, 0.8);
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -42,6 +47,7 @@
                 border: 2px solid black;
                 border-radius: 50%;
                 margin: 4px 0px 12px 0px;
+                box-shadow: none;
             }
                 .seq input {
                     display: inline-block;
@@ -53,18 +59,22 @@
                     display: inline-block;
                     height: 22px;
                     width: 22px;
-                    background-color: #aaa;
+                    background-color: #222a;
                     border: black 1px solid;
                     border-radius: 50%;
+                    box-shadow: none;
+                    transition: 0.3s;
                 }
                     .seq input:checked + span {
-                        background-color: tomato;
+                        background-color: hsl(174, 100%, 60%);
+                        box-shadow: 0px 1px 10px 1px hsl(174, 100%, 80%);
                     }
                     .seq span:hover {
                         cursor: pointer
                     }
                     .seq span:active {
-                        background-color: red;
+                        background-color: hsl(174, 100%, 90%);
+                        box-shadow: 0px 1px 10px 10px hsl(174, 100%, 90%);
                     }
 /* here goes prob */
             .seq label.prob {

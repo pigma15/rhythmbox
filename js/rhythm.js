@@ -153,6 +153,7 @@ function runSeq(track, audio) {
         audio.play();
     }
     steps[0].style.backgroundColor = 'orange';
+    steps[0].style.boxShadow = '0px 1px 15px 3px orange';
     let currentStep = 1;
     let prevStep = 1;
     function time() {
@@ -177,13 +178,16 @@ function runSeq(track, audio) {
                     if (steps[prevStep] === undefined || steps[currentStep] === undefined) {
                         stepAmount = parseInt(stepInput.value);
                         for (i = 1; i < stepAmount; i++) {
-                            steps[i].style.backgroundColor = 'black';
+                            steps[i].style.backgroundColor = 'hsla(230, 30%, 30%, 0.8)';
+                            steps[i].style.boxShadow = 'none';
                         }
                         prevStep = stepAmount - 1;
                         currentStep = 0;
                     }
                     steps[currentStep].style.backgroundColor = 'orange';
-                    steps[prevStep].style.backgroundColor = 'black';
+                    steps[currentStep].style.boxShadow = '0px 1px 15px 3px orange';
+                    steps[prevStep].style.backgroundColor = 'hsla(230, 30%, 30%, 0.8)';
+                    steps[prevStep].style.boxShadow = 'none';
                     if (step[currentStep].checked) {
                         if(probStep[currentStep].checked === false) {
                             audio.pause();
@@ -202,7 +206,8 @@ function runSeq(track, audio) {
                     }
                     if (playState === false ) {
                         for (i = 1; i < stepAmount; i++) {
-                            steps[i].style.backgroundColor = 'black';
+                            steps[i].style.backgroundColor = 'hsla(230, 30%, 30%, 0.8)';
+                            steps[i].style.boxShadow = 'none';
                         }
                         clearTimeout(sequencer);
                     } else {

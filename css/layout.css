@@ -1,12 +1,22 @@
 body {
-    background-color: black;
+    background-color: white;
+    background-image: url(../img/wood.jpg);
+    background-size: cover;
+    background-attachment: fixed;
     display: grid;
-    grid-template-columns: 1fr 90% 1fr;
+    grid-template-columns: 1fr 94% 1fr;
 }
     .machine {
-        margin-top: 20px;
+        background-color: hsl(230, 60%, 30%);
+        background-image: url(../img/bluepcb.jpg);
+        background-size: contain;
+        margin-top: 25px;
         display: inline-block;
         grid-column: 2/3;
+        padding: 5px 5px;
+        border: black 3px solid;
+        border-radius: 20px;
+        box-shadow: 1px 10px 10px 10px #111f;
     }
 
     .help {
