@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="./css/fonts.css">
     <link rel="stylesheet" href="./css/font-awesome.min.css">
     <!-- component -->
+    <link rel="stylesheet" href="./css/help.css">
     <link rel="stylesheet" href="./css/controls.css">
     <link rel="stylesheet" href="./css/track.css">
     <!-- custom -->
@@ -19,6 +20,88 @@
 </head>
 <body>
     <div class="machine">
+        <div id="help" class="help">
+            <button type="button" class="close" onclick="helpoff()">close</button>
+            <h1>Welcome to Rhythmbox</h1>
+            <div class="description">
+                <div class="instruction">
+                    <span>transport buttons</span>
+                    <p>Pressing <i class="fa fa-play" aria-hidden="true"></i> button activates play mode and step sequencers of each track start to run. <br>
+                    Pressing <i class="fa fa-stop" aria-hidden="true"></i> button deactivates play mode and returns their active step to first position (for info about "active step" look below). <br>
+                    Bonus tip: In case of any malfuctions resetting machine by simply clicking <i class="fa fa-stop" aria-hidden="true"></i> and then clicking <i class="fa fa-play" aria-hidden="true"></i> afterwards might help.
+                    </p>
+                </div>
+                <div class="img"><img src="./img/transport.jpg" alt="transport"></div>
+            </div>
+            <div class="description">
+                <div class="instruction">
+                    <span>active step</span>
+                    <p>As long as machine is in play mode step sequencers of each track will be running in loops. <br>
+                    Active step (or current position of loop) is shown with orange circular light.</p>
+                </div>
+                <div class="img"><img src="./img/stepactive.jpg" alt="stepactive"></div>
+            </div>
+            <div class="description">
+                <div class="instruction">
+                    <span>triggers</span>
+                    <p>Steps can be turned on and turned off by simply clicking on them. Sky blue light will appear as soon as step is turned on. Turning off the step will make light disappear. <br>
+                    Step which has been turned on will trigger sound as it becomes active (with orange light around). <br>
+                    However, it is possible to change probability of sound to be triggered by turning on/off rectangular button. When probability button is turned(illuminated) it gives 50% chance for sound to be triggered.
+                </p>
+                </div>
+                <div class="img trig">
+                    <div class="trow">
+                        <p>0%</p>
+                        <div class="timg"><img src="./img/trigno.jpg" alt="trigno"></div>
+                    </div>
+                    <div class="trow">
+                        <p>0%</p>
+                        <div class="timg"><img src="./img/trigprobno.jpg" alt="trigprobno"></div>
+                    </div>
+                    <div class="trow">
+                        <p>50%</p>
+                        <div class="timg"><img src="./img/trig50.jpg" alt="trig50"></div>
+                    </div>
+                    <div class="trow">
+                        <p>100%</p>
+                        <div class="timg"><img src="./img/trig100.jpg" alt="trig100"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="description">
+                <div class="instruction">
+                    <span>tempo</span>
+                    <p>Tempo adjusts speed of step sequencers. Step sequencers start to run faster with higher values. <br>
+                    Tempo can be adjusted with arrow buttons on the right of tempo srceen.</p>
+                </div>
+                <div class="img"><img src="./img/tempo.jpg" alt="tempo"></div>
+            </div>
+            <div class="description">
+                <div class="instruction">
+                    <span>tonality</span>
+                    <p>Sounds of tertia and septima tracks can be changed (from minor third to major third and from minor seventh to major seventh) by editing value on tonality screen. <br>
+                    Tonality can be changed only while play mode is not active.</p>
+                </div>
+                <div class="img"><img src="./img/tonality.jpg" alt="tonality"></div>
+            </div>
+            <div class="description">
+                <div class="instruction">
+                    <span>step count</span>
+                    <p>Amount of steps for each track can be changed by editing values with arrow buttons on the right of step count screen. <br>
+                        Time which takes one cycle of sequencer's loop to complete does not change by adding/removing steps. However, it changes how much time it takes to jump from one step to another.
+                    </p>
+                </div>
+                <div class="img"><img src="./img/stepcount.jpg" alt="stepcount"></div>
+            </div>
+            <div class="description">
+                <div class="instruction">
+                    <span>tempo multiplier</span>
+                    <p>It is possible to change speed of sequencer on each track seperately by editing values in tempo multiplier section. <br>
+                    Individually edited tempo depends on values of global tempo. For example if global tempo is 100 then track with tempo multiplier's value of 1/2 will run at speed of 50 and if multiplier is set to 3/2 it will run as if tempo were 150.</p>
+                </div>
+                <div class="img"><img src="./img/multiplier.jpg" alt="multiplier"></div>
+            </div>
+        </div>
         <div class="controls">
             <div class="tempo">
                 <span>tempo</span>
@@ -484,6 +567,9 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div class="bottom">
+        <button type="button" onclick="helpon()">help</button>
     </div>
 
     <script src="./js/rhythm.js"></script>

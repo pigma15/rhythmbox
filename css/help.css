@@ -1,0 +1,138 @@
+.help {
+    display: flex;
+    position: absolute;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    width: 101%;
+    height: calc(100% + 41px);
+    transform: translate(-4px, -5px);
+    backdrop-filter: blur(44px);
+    border: transparent 1px solid;
+    border-radius: 15px;
+}
+.help * {
+    color: hsl(219, 20%, 90%);
+}
+    .help > .close {
+        display: inline-block;
+        position: absolute;
+        z-index: 2;
+        width: 10%;
+        height: 26px;
+        top: 6px;
+        right: 9px;
+        text-align: center;
+        font-family: rubikmedium;
+        font-size: 16px;
+        line-height: 20px;
+        border: 2px hsl(219, 20%, 90%) solid;
+        border-radius: 6px;
+        padding-top: 3px;
+        box-shadow: 0px 1px 1px 1px  hsl(219, 20%, 50%);
+        background-color: transparent;
+    }
+        .help .close:hover {
+            cursor: pointer;
+            background-color: #8885;
+        }
+        .help .close:active {
+            background-color: #222d;
+        }
+        .help .close:focus {
+            outline: none;
+        }
+        .help.hidden {
+            display: none;
+        }
+    .help > h1 {
+        font-family: rubik;
+        display: inline-block;
+        width: 50%;
+        margin: 10px 25%;
+        text-align: center;
+        text-decoration: underline;
+        font-size: 33px;
+        background-color: transparent;
+    }
+        .help .description {
+            display: flex;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+            width: 94%;
+            margin: 0% 2% 0% 4%;
+            font-size: 16px;
+            background-color: #1112;
+            border: transparent 1px solid;
+            border-radius: 5px;
+        }
+            .description:last-of-type{
+                margin-bottom: 30px;
+            }
+            .description > .instruction {
+                display: inline-block;
+                width: 74%;
+                margin-left: 1%;
+            }
+                .instruction > span {
+                    display: inline-block;
+                    font-size: 17px;
+                    text-transform: capitalize;
+                    font-family: rubikmedium;
+                }
+                    .instruction > span::after {
+                        content: ':';
+                    }
+                .instruction p {
+                    font-family: rubik;
+                    display: inline-block;
+                    width: 97%;
+                    margin: 0% 1% 0% 2%;
+                    font-size: 14px;
+                    line-height: 15px;
+                }
+                    .instruction > p > i {
+                        display: inline-block;
+                    }
+            .description > .img {
+                display: flex;
+                width: 25%;
+            }
+                .img img {
+                    display: inline-block;
+                    max-width: 100%;
+                    max-height: 100%;
+                }
+            .description > .img.trig {
+                width: 24%;
+                margin-right: 1%;
+                border-left: 1px solid #ccc8;
+                justify-content: center;
+                align-items: center;
+            }
+                .description > .img.trig > .trow {
+                    display: flex;
+                    flex-flow: row;
+                    width: 25%;
+                }
+                    .description > .img.trig > .trow > p {
+                        display: inline-block;
+                        width: 50%;
+                        font-family: rubik;
+                        font-size: 12px;
+                        margin-top: calc(50% - 12px);
+                        text-align: right;
+                    }
+                    .description > .img.trig > .trow > p::after{
+                        content: ':';
+                    }
+                    .description > .img.trig > .trow > .timg {
+                        display: inline-block;
+                        width: 50%;
+                    }
+                        .description > .img.trig > .trow > .timg > img {
+                            display: inline-block;
+                            max-width: 100%;
+                            max-height: 100%;
+                    }

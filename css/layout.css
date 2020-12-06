@@ -16,6 +16,35 @@ body {
         padding: 5px 5px;
         border: black 3px solid;
         border-radius: 20px;
-        box-shadow: 1px 10px 10px 10px #111f;
+        box-shadow: 1px 8px 8px 8px #111f;
+        position: relative;
     }
-    
+    .bottom {
+        display: flex;
+        align-items: center;
+        grid-column: 2/3;
+        width: 95%;
+        margin-top: 14px;
+        margin-left: 5%;
+        height: 20px;
+    }
+        .bottom button {
+            display: inline-block;
+            height: 95%;
+            background-color: #4444;
+            color: hsl(219, 20%, 90%);
+            border: hsl(219, 20%, 90%) 1px solid;
+            border-radius: 3px;
+            width: 80px;
+        }
+        .bottom button:hover {
+            cursor: pointer;
+            background-color: #02051255;
+        }
+        .bottom button:active {
+            background-color: hsl(219, 20%, 90%);;
+            color: #222d;
+        }
+        .bottom button:focus {
+            outline: none;
+        }
