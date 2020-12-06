@@ -10,6 +10,8 @@
     border-radius: 20px;
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 5px;
+    position: relative;
+    z-index: 0;
 }
     .controls > .tempo {
         background-color: #02051288;
@@ -58,6 +60,10 @@
         .tempo input::-webkit-inner-spin-button {
             display: inline-block;
             cursor: pointer;
+            opacity: 0.5;
+        }
+        .tempo input::-webkit-inner-spin-button:hover {
+            opacity: 0.9;
         }
     .controls .transport {
         background-color: #1113;

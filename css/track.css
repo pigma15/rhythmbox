@@ -11,6 +11,8 @@
     border-radius: 5px;
     border-top-left-radius: 8px;
     border-bottom-left-radius: 30px;
+    position: relative;
+    z-index: 0;
 }
 .track:last-child {
     border-bottom-right-radius: 10px;
@@ -166,6 +168,10 @@
                 .stepcount input::-webkit-inner-spin-button {
                     display: inline-block;
                     cursor: pointer;
+                    opacity: 0.5;
+                }
+                .stepcount input::-webkit-inner-spin-button:hover {
+                    opacity: 0.9;
                 }
         .multiplier {
             background-color: #020511af;

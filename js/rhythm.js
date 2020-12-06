@@ -14,8 +14,9 @@ const playButton = document.querySelector('.controls button[name="play"]');
 const stopButton = document.querySelector('.controls button[name="stop"]');
 const tempoInput = document.querySelector('.tempo input');
 const tonalityInput = document.querySelector('.tonality select');
+const help = document.querySelector('#help')
+const helpClose = document.querySelector('#help > .close')
 let playState = false;
-
 
 // DATA INDIVIDUAL DIRECTORIES
 const primaSeq = document.querySelector('#prima div.seq > form');
@@ -46,6 +47,26 @@ let septimaStepAmount = 4;
 let kickStepAmount = 4;
 let snareStepAmount = 4;
 let hatStepAmount = 4;
+
+//HELP
+function helpoff() {
+    help.classList.add("closed");
+    setTimeout(function() {
+        helpClose.classList.add("hidden");
+    }, 20)
+    setTimeout(function() {
+        help.classList.add("hidden");
+    }, 1000)
+}
+function helpon() {
+    help.classList.remove("hidden");
+    setTimeout(function() {
+        helpClose.classList.remove("hidden");
+    }, 1000)
+    setTimeout(function() {
+        help.classList.remove("closed");
+    }, 10)
+}
 
 //STEPCOUNT
 function stepCount(track, trackSeq) {

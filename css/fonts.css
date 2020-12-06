@@ -6,3 +6,11 @@
     src: url(../fontdigital/DIGITALDREAMFAT.ttf);
     font-family: digital fat;
 }
+@font-face {
+    src: url(../fontdigital/Rubik-Regular.ttf);
+    font-family: rubik;
+}
+@font-face {
+    src: url(../fontdigital/Rubik-Medium.ttf);
+    font-family: rubikmedium;
+}
