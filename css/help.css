@@ -1,4 +1,5 @@
-.help {
+
+#help {
     display: flex;
     position: absolute;
     flex-wrap: wrap;
@@ -11,11 +12,26 @@
     backdrop-filter: blur(44px);
     border: transparent 1px solid;
     border-radius: 15px;
+    transition: 1s;
 }
-.help * {
+#help.closed {
+    width: 0%;
+    height: 0%;
+    margin-top: calc( (100% + 41px ) / 2 );
+    margin-left: 5%;
+    transform: translate(0px, 0px);
+}
+    #help.closed * {
+        font-size: 0px;
+        height: 0px;
+        color: transparent;
+        background-color: transparent;
+        border-color: transparent;
+    }
+#help * {
     color: hsl(219, 20%, 90%);
 }
-    .help > .close {
+    #help > .close {
         display: inline-block;
         position: absolute;
         z-index: 2;
@@ -33,20 +49,23 @@
         box-shadow: 0px 1px 1px 1px  hsl(219, 20%, 50%);
         background-color: transparent;
     }
-        .help .close:hover {
+        #help .close:hover {
             cursor: pointer;
             background-color: #8885;
         }
-        .help .close:active {
+        #help .close:active {
             background-color: #222d;
         }
-        .help .close:focus {
+        #help .close:focus {
             outline: none;
         }
-        .help.hidden {
+        #help .close.hidden {
             display: none;
         }
-    .help > h1 {
+#help.hidden {
+    display: none;
+}
+    #help > h1 {
         font-family: rubik;
         display: inline-block;
         width: 50%;
@@ -55,8 +74,9 @@
         text-decoration: underline;
         font-size: 33px;
         background-color: transparent;
+        transition: 1s;
     }
-        .help .description {
+        #help .description {
             display: flex;
             justify-content: flex-start;
             flex-wrap: wrap;
@@ -66,6 +86,7 @@
             background-color: #1112;
             border: transparent 1px solid;
             border-radius: 5px;
+            transition: 1s;
         }
             .description:last-of-type{
                 margin-bottom: 30px;
@@ -80,6 +101,7 @@
                     font-size: 17px;
                     text-transform: capitalize;
                     font-family: rubikmedium;
+                    transition: 1s;
                 }
                     .instruction > span::after {
                         content: ':';
@@ -91,6 +113,7 @@
                     margin: 0% 1% 0% 2%;
                     font-size: 14px;
                     line-height: 15px;
+                    transition: 1s;
                 }
                     .instruction > p > i {
                         display: inline-block;
@@ -123,6 +146,7 @@
                         font-size: 12px;
                         margin-top: calc(50% - 12px);
                         text-align: right;
+                        transition: 1s;
                     }
                     .description > .img.trig > .trow > p::after{
                         content: ':';
